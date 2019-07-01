@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Form, SubmitButton, List, Error } from './styles';
+import { Form, SubmitButton, List } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -34,7 +34,7 @@ export default class Main extends Component {
   }
 
   handleInputChange = e => {
-    this.setState({ newRepo: e.target.value });
+    this.setState({ newRepo: e.target.value, error: null });
   };
 
   handleSubmit = async e => {
@@ -45,9 +45,11 @@ export default class Main extends Component {
     try {
       const { newRepo, repositories } = this.state;
 
-      const hasRepo = repositories.find(r => r.full_name === newRepo);
+      if (newRepo === '') throw 'Você precisa indicar um repositório';
 
-      if (hasRepo) throw new Error('Repositório duplicado');
+      const hasRepo = repositories.find(r => r.name === newRepo);
+
+      if (hasRepo) throw 'Repositório duplicado';
 
       const response = await api.get(`/repos/${newRepo}`);
 
@@ -59,8 +61,8 @@ export default class Main extends Component {
         repositories: [...repositories, data],
         newRepo: '',
       });
-    } catch (err) {
-      this.setState({ error: err.message });
+    } catch (error) {
+      this.setState({ error: true });
     } finally {
       this.setState({ loading: false });
     }
@@ -76,7 +78,7 @@ export default class Main extends Component {
           Repositórios
         </h1>
 
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} error={error}>
           <input
             type="text"
             placeholder="Adicionar repositório"
@@ -84,7 +86,7 @@ export default class Main extends Component {
             onChange={this.handleInputChange}
           />
 
-          <SubmitButton loading={loading} error={error}>
+          <SubmitButton loading={loading}>
             {loading ? (
               <FaSpinner color="#FFF" size={14} />
             ) : (
@@ -93,15 +95,11 @@ export default class Main extends Component {
           </SubmitButton>
         </Form>
 
-        {error && <Error>{error}</Error>}
-
         <List>
           {repositories.map(repository => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <Link
-                to={`/repository/${encodeURIComponent(repository.full_name)}`}
-              >
+              <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
                 Detalhes
               </Link>
             </li>

@@ -7,10 +7,12 @@ export const Form = styled.form`
 
   input {
     flex: 1;
-    border: 1px solid #eee;
+    border: 1px solid ${props => (props.error ? '#ff6b6b' : '#eee')};
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
+
+    transition: border 0.25s ease-out;
   }
 `;
 
@@ -37,8 +39,6 @@ export const SubmitButton = styled.button.attrs(props => ({
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border: 2px solid ${props => (props.error ? '#eb4d4b' : 'transparent')};
 
   &[disabled] {
     cursor: not-allowed;
@@ -74,13 +74,4 @@ export const List = styled.ul`
       text-decoration: none;
     }
   }
-`;
-
-export const Error = styled.p`
-  margin-top: 12px;
-  padding: 8px;
-  background: #ff6b6b;
-  border: 2px solid #ee5253;
-  border-radius: 3px;
-  color: #a6393a;
 `;
