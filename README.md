@@ -15,10 +15,10 @@ Antes de fazer a chamada à API na função `handleSubmit` faça uma verificaç�
 Caso exista, dispare um erro, e com isso o código cairá no `catch` do `try/catch` criado na funcionalidade anterior.
 
 ```js
-throw new Error('Repositório duplicado');
+throw 'Repositório duplicado';
 ```
 
-### Filtro de estado 
+### Filtro de estado
 
 Adicione um filtro de estado na listagem de Issues que criamos no detalhe do repositório. O estado representa se a issue está em aberto, fechada ou uma opção para exibir todas.
 
@@ -42,7 +42,7 @@ https://api.github.com/repos/rocketseat/unform/issues?page=2
 
 Adicione apenas um botão de próxima página e página anteior. O botão de página anterior deve ficar desativado na primeira página.
 
-## Entrega 
+## Entrega
 
 Esse desafio **não precisa ser entregue** e não receberá correção, mas você pode ver o resultado do código do desafio aqui: https://github.com/Rocketseat/bootcamp-gostack-desafio-05
 
