@@ -15,7 +15,7 @@ Antes de fazer a chamada à API na função `handleSubmit` faça uma verificaç�
 Caso exista, dispare um erro, e com isso o código cairá no `catch` do `try/catch` criado na funcionalidade anterior.
 
 ```js
-throw 'Repositório duplicado';
+throw new Error('Repositório duplicado');
 ```
 
 ### Filtro de estado
