@@ -51,6 +51,12 @@ export default class Main extends Component {
 
       if (hasRepo) throw 'Repositório duplicado';
 
+      try {
+        const response = await api.get(`/repos/${newRepo}`);
+      } catch (e) {
+        throw 'Repositório não encontrado'
+      }
+
       const response = await api.get(`/repos/${newRepo}`);
 
       const data = {
@@ -90,8 +96,8 @@ export default class Main extends Component {
             {loading ? (
               <FaSpinner color="#FFF" size={14} />
             ) : (
-              <FaPlus color="#FFF" size={14} />
-            )}
+                <FaPlus color="#FFF" size={14} />
+              )}
           </SubmitButton>
         </Form>
 
