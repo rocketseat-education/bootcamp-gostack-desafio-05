@@ -40,7 +40,7 @@ Adicione paginação nas issues listadas no detalhe do repositório. A API do Gi
 https://api.github.com/repos/rocketseat/unform/issues?page=2
 ```
 
-Adicione apenas um botão de próxima página e página anteior. O botão de página anterior deve ficar desativado na primeira página.
+Adicione apenas um botão de próxima página e página anterior. O botão de página anterior deve ficar desativado na primeira página.
 
 ## Entrega
 
