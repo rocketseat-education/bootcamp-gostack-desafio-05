@@ -6,7 +6,7 @@
   Desafio 5: Primeiro projeto com ReactJS
 </h3>
 
-<blockquote align="center">“Para quem fica melhor a cada dia, ficar pronto é utopia”!</blockquote>
+<p align="center">“Para quem fica melhor a cada dia, ficar pronto é utopia”!</blockquote>
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/rocketseat/bootcamp-gostack-desafio-05?color=%2304D361">
